@@ -5,18 +5,24 @@ public class Main {
     public static Scanner scan = new Scanner(System.in);
     public static void main(String[] args)
     {
-        
-        System.out.println("Main Menu\n"
-        + "(1) Get letter grade\n"
-        + "(2) Exit Program\n\n"
-        + "Enter '1' or '2' for your selection:");
-        userInput();
+        intro();
+
 
         
 
 
         
     }
+
+    public static void intro()
+    {
+        System.out.println("Main Menu\n"
+                + "(1) Get letter grade\n"
+                + "(2) Exit Program\n\n"
+                + "Enter '1' or '2' for your selection:");
+        userInput();
+    }
+
 
     public static void userInput()
     {
@@ -38,7 +44,7 @@ public class Main {
         System.out.println("Please enter a score as an integer value: ");
         int input = scan.nextInt();
         String score = "";
-        if(input >= 90)
+        if(input >= 90 && input <= 100)
         {
             score = "A";
         }
@@ -50,6 +56,28 @@ public class Main {
         {
             score = "C";
         }
+        else if(input >= 60)
+        {
+            score = "D";
+        }
+        else
+        {
+            score = "F";
+        }
+        System.out.println("The grade is: " + score + "\n---------------------------------------\n\n");
+        System.out.println("Would you like to enter a new score?\n"
+        + "(Y) Yes   (N) No");
+        scan.nextLine();
+        String choice = scan.nextLine();
+        if(choice == "Y")
+        {
+            getGrade();
+        }
+        else if(choice == "N")
+        {
+            intro();
+        }
+
 
 
     }
