@@ -36,7 +36,86 @@ userMenu:
     j invalidChoice
 
 getLetterGrade:
-    # Code for Task 1 (same as before)
+    # Prompt user for score
+    li $v0, 4               # Load system call code for printing string
+    la $a0, prompt          # Load address of the prompt
+    syscall
+
+    # Get user input for the score
+    li $v0, 5               # Load system call code for reading integer
+    syscall
+    move $t1, $v0           # Store user input in $t1
+
+    # Validate input
+    blt $t1, 0, invalidInput
+    bgt $t1, 100, invalidInput
+
+    # Determine letter grade based on user input
+    bge $t1, 90, gradeA
+    bge $t1, 80, gradeB
+    bge $t1, 70, gradeC
+    bge $t1, 60, gradeD
+    j gradeF
+
+gradeA:
+    li $v0, 4               # Load system call code for printing string
+    la $a0, resultMessage   # Load address of the result message
+    syscall
+    li $v0, 4               # Load system call code for printing string
+    la $a0, "A\n"
+    syscall
+    j userMenu
+
+gradeB:
+    li $v0, 4               # Load system call code for printing string
+    la $a0, resultMessage   # Load address of the result message
+    syscall
+    li $v0, 4               # Load system call code for printing string
+    la $a0, "B\n"
+    syscall
+    j userMenu
+
+gradeC:
+    li $v0, 4               # Load system call code for printing string
+    la $a0, resultMessage   # Load address of the result message
+    syscall
+    li $v0, 4               # Load system call code for printing string
+    la $a0, "C\n"
+    syscall
+    j userMenu
+
+gradeD:
+    li $v0, 4               # Load system call code for printing string
+    la $a0, resultMessage   # Load address of the result message
+    syscall
+    li $v0, 4               # Load system call code for printing string
+    la $a0, "D\n"
+    syscall
+    j userMenu
+
+gradeF:
+    li $v0, 4               # Load system call code for printing string
+    la $a0, resultMessage   # Load address of the result message
+    syscall
+    li $v0, 4               # Load system call code for printing string
+    la $a0, "F\n"
+    syscall
+    j userMenu
+
+invalidChoice:
+    # Display invalid choice message
+    li $v0, 4               # Load system call code for printing string
+    la $a0, "Invalid choice. Please enter 1 or 2.\n"
+    syscall
+    j userMenu
+
+invalidInput:
+    # Display invalid input message
+    li $v0, 4               # Load system call code for printing string
+    la $a0, "Invalid input. Please enter a score between 0 and 100.\n"
+    syscall
+    j getLetterGrade
+
 
 advancedMath:
     # Prompt user for x
