@@ -2,9 +2,9 @@
 menuPrompt: .asciiz "\nMain Menu\n(1) Get Letter Grade\n(2) Advanced Math: x^y\n(3) Exit Program\nEnter your choice: "
 prompt1: .asciiz "Enter your score (0-100): "
 resultMessage1: .asciiz "Your letter grade is: "
-prompt2: .asciiz "Enter two integers (x and y) for x^y calculation:\nx: "
+prompt2: .asciiz "Enter two integers (x and y) for x^y calculation:\n Enter a number for 'x': "
 resultMessage2: .asciiz "Result of x^y is: "
-promptY: .asciiz "y: "
+promptY: .asciiz "Enter a number for 'y': "
 invalidChoiceMessage: .asciiz "Invalid choice. Please enter 1, 2, or 3.\n"
 aGrade: .asciiz "A\n"
 bGrade: .asciiz "B\n"
@@ -149,7 +149,7 @@ advancedMath:
         mul $t3, $t3, $t1     # Multiply result by x
 
         # Increment loop counter
-        addi $t3, $t3, 1
+        addi $t3, $t3, 0
 
         # Repeat the loop
         j powLoop
